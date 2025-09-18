@@ -3,8 +3,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
-  background: #fff;
+  background: transparent;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid #d1d2d6;
 }
 
 .header__logo {
@@ -12,7 +15,7 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  color: #222;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
@@ -23,7 +26,7 @@
 
 .header__button {
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  background: #1976d2;
+  background: transparent;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -32,9 +35,10 @@
   font-weight: 500;
   line-height: 24px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 .header__button:hover {
-  background: #125ea2;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
