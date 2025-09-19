@@ -1,0 +1,135 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__form {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 36px 32px 36px;
+  min-width: 430px;
+  max-width: 430px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal__title {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  color: #1a1b22;
+  max-width: 76px;
+  max-height: 32px;
+  align-self: flex-start;
+  margin-bottom: 24px;
+}
+
+.modal__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #2f71e5;
+  margin-bottom: 8px;
+  max-width: 139px;
+  height: 14px;
+}
+
+.modal__input {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  padding: 0 12px 8px 12px;
+  max-width: 358px;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0;
+  padding-bottom: 31px;
+  vertical-align: bottom;
+  padding-top: 24px;
+}
+
+.modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  max-width: 137px;
+  height: 14px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  top: 10px;
+}
+
+.modal__submit {
+  width: 100%;
+  max-width: 358px;
+  height: 64px;
+  border-radius: 100px;
+  background: #e6e8eb;
+  color: #b6bcbf;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  border: none;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__alt-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  height: 20px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  margin: 0 auto;
+}
+
+.modal__alt-text {
+  color: #000;
+}
+
+.modal__alt-button {
+  background: none;
+  border: none;
+  color: #2f71e5;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  cursor: pointer;
+  padding: 0 0 0 4px;
+}

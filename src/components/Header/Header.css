@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
@@ -10,6 +11,21 @@
   border-bottom: 1px solid #d1d2d6;
 }
 
+.header__buttons {
+  position: relative;
+  height: 100%;
+}
+
+.header__white-line {
+  width: 68px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  margin-top: auto;
+  margin-bottom: -2px;
+  /* visually sits right above the border */
+}
+
 .header__logo {
   font-family: Roboto Slab, Arial, Helvetica, sans-serif;
   font-size: 20px;
@@ -17,6 +33,7 @@
   line-height: 24px;
   color: #ffffff;
   letter-spacing: 1px;
+  margin-right: auto;
 }
 
 .header__nav {
@@ -24,11 +41,25 @@
   gap: 16px;
 }
 
-.header__button {
+.header__button-home {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   background: transparent;
   color: #fff;
   border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.header__button-sign-in {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: #fff;
+  border: 1px;
   border-radius: 4px;
   padding: 8px 18px;
   font-size: 18px;
