@@ -2,23 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 1440px;
+  width: 100vw;
   height: 80px;
   max-height: 80px;
   background: #fff;
   padding: 0 32px;
   box-sizing: border-box;
-  margin: 0 auto;
 }
 
-.footer__left {
+.footer__title {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #b6bcbf;
 }
 
-.footer__right {
+.footer__buttons {
   display: flex;
   gap: 16px;
 }

@@ -1,8 +1,39 @@
-import React from "react";
+// import React from "react";
+// import "./Main.css";
+// import SearchForm from "../SearchForm/SearchForm";
+
+// function Main() {
+//   return (
+//     <section className="main">
+//       <div className="main__background" />
+//       <h1 className="main__title">What's going on in the world?</h1>
+//       <p className="main__subtitle">
+//         Find the latest news on any topic and save them in your personal
+//         account.
+//       </p>
+//       <SearchForm />
+//     </section>
+//   );
+// }
+
+// export default Main;
+import React, { useState } from "react";
 import "./Main.css";
 import SearchForm from "../SearchForm/SearchForm";
 
 function Main() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSearch = (keyword) => {
+    console.log("Searching for:", keyword); // temporary
+    setIsLoading(true);
+
+    // later → API request goes here
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
     <section className="main">
       <div className="main__background" />
@@ -11,7 +42,7 @@ function Main() {
         Find the latest news on any topic and save them in your personal
         account.
       </p>
-      <SearchForm />
+      <SearchForm onSearch={handleSearch} isLoading={isLoading} />
     </section>
   );
 }
