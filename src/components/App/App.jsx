@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -9,6 +9,8 @@ import getArticles from "../../utils/newsApi";
 import Results from "../Results/Results";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   // Auth/Modal state (unchanged)
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -100,8 +102,26 @@ function App() {
     setSavedArticles((prev) => prev.filter((a) => a.url !== article.url));
   };
 
+  useEffect(() => {
+    const tokenFromStorage = localStorage.getItem("jwt");
+    if (tokenFromStorage) {
+      auth
+        .checkToken(tokenFromStorage)
+        .then((res) => {
+          setCurrentUser(res);
+          setLoggedIn(true);
+        })
+        .catch(() => {
+          setLoggedIn(false);
+        });
+    }
+  }, []);
+
   return (
     <div className="app">
+      <button onClick={() => setLoggedIn((prev) => !prev)}>
+        {loggedIn ? "Log out (fake)" : "Log in (fake)"}
+      </button>
       <Header
         onSignInClick={openSignInModal}
         loggedIn={isLoggedIn}
