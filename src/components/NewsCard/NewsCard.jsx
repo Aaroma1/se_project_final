@@ -1,0 +1,67 @@
+import React, { useState } from "react";
+import "./NewsCard.css"; // make sure you have your styles here
+
+function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const handleSaveClick = (e) => {
+    e.preventDefault(); // prevent navigating when clicking the icon
+    if (!loggedIn) {
+      setShowTooltip(true);
+      return;
+    }
+    if (isSaved) {
+      onRemove(article);
+    } else {
+      onSave(article);
+    }
+  };
+
+  return (
+    <div className="newscard">
+      <a href={article.url} target="_blank" rel="noopener noreferrer">
+        <img
+          className="newscard__image"
+          src={article.urlToImage}
+          alt={article.title}
+        />
+        <div className="newscard__content">
+          <h3 className="newscard__title">{article.title}</h3>
+          <p className="newscard__description">{article.description}</p>
+          <p className="newscard__date">
+            {new Date(article.publishedAt).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
+          <p className="newscard__source">{article.source?.name}</p>
+        </div>
+      </a>
+
+      {/* Save Icon */}
+      <button
+        className={`newscard__save-btn ${
+          !loggedIn
+            ? "newscard__save-btn_inactive"
+            : isSaved
+            ? "newscard__save-btn_saved"
+            : "newscard__save-btn_active"
+        }`}
+        onClick={handleSaveClick}
+        onMouseEnter={() => !loggedIn && setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+        type="button"
+      >
+        {/* visually represented by CSS background */}
+      </button>
+
+      {/* Tooltip */}
+      {showTooltip && !loggedIn && (
+        <span className="newscard__tooltip">Sign in to save articles</span>
+      )}
+    </div>
+  );
+}
+
+export default NewsCard;

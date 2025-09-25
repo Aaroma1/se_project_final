@@ -1,127 +1,3 @@
-// import { useState } from "react";
-// import Header from "../Header/Header";
-// import Main from "../Main/Main";
-// import About from "../About/About";
-// import "./App.css";
-// import Footer from "../Footer/Footer";
-// import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
-// function App() {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-
-//   const handleSignInClick = () => setIsModalOpen(true);
-//   const handleCloseModal = () => setIsModalOpen(false);
-
-//   return (
-//     <>
-//       <div className="page">
-//         <main className="page__content">
-//           <Header onSignInClick={handleSignInClick} />
-//           <Main />
-//           <About />
-//           <Footer />
-//         </main>
-//       </div>
-//       {isModalOpen && (
-//         <ModalWithForm
-//           isOpen={isModalOpen}
-//           onClose={handleCloseModal}
-//           title="Sign in"
-//           submitText="Sign in"
-//           altText="or"
-//           altActionText="Sign up"
-//           onSubmit={() => handleCloseModal()}
-//           onAltAction={() => {}}
-//         />
-//       )}
-//     </>
-//   );
-// }
-
-// export default App;
-// import { useState } from "react";
-// import Header from "../Header/Header";
-// import Main from "../Main/Main";
-// import About from "../About/About";
-// import Footer from "../Footer/Footer";
-// import SignInModal from "../SignInModal/SignInModal";
-// import SignUpModal from "../SignUpModal/SignUpModal";
-
-// function App() {
-//   const [isSignInOpen, setIsSignInOpen] = useState(false);
-//   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
-//   const [currentUser, setCurrentUser] = useState({});
-
-//   // Open modals
-//   const openSignInModal = () => {
-//     setIsSignInOpen(true);
-//     setIsSignUpOpen(false);
-//   };
-
-//   const openSignUpModal = () => {
-//     setIsSignUpOpen(true);
-//     setIsSignInOpen(false);
-//   };
-
-//   const closeModals = () => {
-//     setIsSignInOpen(false);
-//     setIsSignUpOpen(false);
-//   };
-
-//   // Sign-in / Sign-up handlers
-//   const handleSignIn = ({ email, password }) => {
-//     setIsLoggedIn(true);
-//     setCurrentUser({ email }); // simple front-end mock
-//     closeModals();
-//   };
-
-//   const handleSignUp = ({ email, password, username }) => {
-//     setIsLoggedIn(true);
-//     setCurrentUser({ email, username }); // simple front-end mock
-//     closeModals();
-//   };
-
-//   const handleLogout = () => {
-//     setIsLoggedIn(false);
-//     setCurrentUser({});
-//   };
-
-//   return (
-//     <>
-//       <div className="page">
-//         <main className="page__content">
-//           <Header
-//             onSignInClick={openSignInModal}
-//             isLoggedIn={isLoggedIn}
-//             onLogout={handleLogout}
-//           />
-//           <Main />
-//           <About />
-//           <Footer />
-//         </main>
-//       </div>
-
-//       {/* Sign In Modal */}
-//       <SignInModal
-//         isOpen={isSignInOpen}
-//         onClose={closeModals}
-//         onSignIn={handleSignIn}
-//         onSwitchToSignUp={openSignUpModal}
-//       />
-
-//       {/* Sign Up Modal */}
-//       <SignUpModal
-//         isOpen={isSignUpOpen}
-//         onClose={closeModals}
-//         onSignUp={handleSignUp}
-//         onSwitchToSignIn={openSignInModal}
-//       />
-//     </>
-//   );
-// }
-
-// export default App;
 import { useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -129,81 +5,140 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
+import getArticles from "../../utils/newsApi";
+import Results from "../Results/Results";
 
 function App() {
+  // Auth/Modal state (unchanged)
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-  // 🔹 Open modals
+  // News search state
+  const [articles, setArticles] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+  // Saved articles state
+  const [savedArticles, setSavedArticles] = useState([]);
+
+  // Modal logic (unchanged)
   const openSignInModal = () => {
     setIsSignInOpen(true);
     setIsSignUpOpen(false);
   };
-
   const openSignUpModal = () => {
     setIsSignUpOpen(true);
     setIsSignInOpen(false);
   };
-
-  // 🔹 Close all modals
   const closeModals = () => {
     setIsSignInOpen(false);
     setIsSignUpOpen(false);
   };
-
-  // 🔹 Sign-in handler
   const handleSignIn = ({ email, password }) => {
     setIsLoggedIn(true);
-    setCurrentUser({ email }); // Mock user
+    setCurrentUser({ email });
     closeModals();
   };
-
-  // 🔹 Sign-up handler
   const handleSignUp = ({ email, password, name }) => {
     setIsLoggedIn(true);
-    setCurrentUser({ email, name }); // Mock user
+    setCurrentUser({ email, name });
     closeModals();
   };
-
-  // 🔹 Logout
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
   };
 
-  return (
-    <>
-      <div className="page">
-        <main className="page__content">
-          <Header
-            onSignInClick={openSignInModal}
-            loggedIn={isLoggedIn}
-            onSignOutClick={handleLogout}
-          />
-          <Main />
-          <About />
-          <Footer />
-        </main>
-      </div>
+  // News search logic
+  const handleSearch = async (keyword) => {
+    if (!keyword.trim()) {
+      setError("Please enter a keyword");
+      setArticles([]);
+      setHasSearched(false);
+      return;
+    }
+    setLoading(true);
+    setError("");
+    setArticles([]);
+    setVisibleCount(0);
+    setHasSearched(true);
+    try {
+      const results = await getArticles(keyword);
+      if (!results || results.length === 0) {
+        setError("Nothing Found");
+      } else {
+        setArticles(results);
+        setVisibleCount(3);
+      }
+    } catch (err) {
+      setError(
+        "Sorry, something went wrong during the request. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleShowMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 3, articles.length));
+  };
 
-      {/* 🔹 Sign In Modal */}
+  const handleSaveArticle = (article) => {
+    // optional: avoid duplicates
+    setSavedArticles((prev) => {
+      // check by URL (or some unique id)
+      if (prev.some((a) => a.url === article.url)) {
+        return prev;
+      }
+      return [article, ...prev];
+    });
+  };
+
+  const handleRemoveArticle = (article) => {
+    setSavedArticles((prev) => prev.filter((a) => a.url !== article.url));
+  };
+
+  return (
+    <div className="app">
+      <Header
+        onSignInClick={openSignInModal}
+        loggedIn={isLoggedIn}
+        onSignOutClick={handleLogout}
+      />
+      <Main onSearch={handleSearch} isLoading={loading} />
+      {hasSearched && (
+        <Results
+          loading={loading}
+          error={error}
+          hasSearched={hasSearched}
+          articles={articles}
+          visibleCount={visibleCount}
+          onShowMore={handleShowMore}
+          loggedIn={isLoggedIn}
+          savedArticles={savedArticles}
+          onSave={handleSaveArticle}
+          onRemove={handleRemoveArticle}
+        />
+      )}
+      <About />
+      <Footer />
+
+      {/* Modals */}
       <SignInModal
         isOpen={isSignInOpen}
         onClose={closeModals}
         onSignIn={handleSignIn}
         onSwitchToSignUp={openSignUpModal}
       />
-
-      {/* 🔹 Sign Up Modal */}
       <SignUpModal
         isOpen={isSignUpOpen}
         onClose={closeModals}
         onSignUp={handleSignUp}
         onSwitchToSignIn={openSignInModal}
       />
-    </>
+    </div>
   );
 }
 
