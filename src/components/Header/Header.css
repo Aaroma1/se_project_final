@@ -27,7 +27,7 @@
   color: #fff;
 } */
 
-.header {
+/* .header {
   background-color: #1a1b22;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
   display: flex;
@@ -121,4 +121,101 @@
 
 .header__links-item_saved {
   color: #1a1b22;
+} */
+.header {
+  background-color: #1a1b22; /* default dark background */
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 32px 0 32px;
+  width: 100vw;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.header__saved {
+  background-color: #ffffff; /* white on saved page */
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+}
+
+.header__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #ffffff; /* default white */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header__title-saved {
+  color: #1a1b22; /* dark text on white background */
+}
+
+.header__links {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.header__links-item {
+  text-decoration: none;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin: 0 auto;
+  padding: 26px;
+  transition: opacity 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header__links-item:hover {
+  opacity: 0.7;
+}
+
+.header__links-item_selected {
+  color: #ffffff;
+  border-bottom: 3px solid white;
+}
+
+.header__links-item_saved {
+  color: #1a1b22; /* dark links on saved page */
+}
+
+.header__links-button {
+  background-color: transparent;
+  color: #fff;
+  border-radius: 100px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  width: 176px;
+  height: 48px;
+  margin: 13px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.header__links-button:hover {
+  cursor: pointer;
+}
+
+.header__links-button_saved {
+  border: 1px solid #1a1b22;
+  color: #1a1b22; /* dark button on saved page */
+}
+
+.header__links-button_image {
+  width: 17.4px;
+  height: 16px;
+  margin-left: 19px;
 }

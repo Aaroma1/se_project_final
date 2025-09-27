@@ -32,6 +32,9 @@ function Results({
 
       {!loading && !error && displayedArticles.length > 0 && (
         <>
+          <div className="results__header-container">
+            <h2 className="results__header">Search results</h2>
+          </div>
           <div className="results__grid">
             {displayedArticles.map((article, index) => (
               <NewsCard

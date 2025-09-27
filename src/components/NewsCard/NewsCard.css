@@ -1,0 +1,250 @@
+/* .newscard {
+  max-width: 400px;
+  height: 576px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.newscard__image {
+  width: 100%;
+  height: 272px;
+  object-fit: cover;
+}
+
+.newscard__content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.newscard__date {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin-bottom: 12px;
+}
+
+.newscard__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0 0 46px 0;
+}
+
+.newscard__description {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  margin: 0 0 46px 0;
+}
+
+.newscard__source {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #b6bcbf;
+  text-transform: uppercase;
+  margin-top: auto;
+} */
+
+/* Save button */
+/* .newscard__save-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9)
+    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newscard__save-btn_inactive {
+  background: rgba(255, 255, 255, 0.9)
+    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
+  cursor: not-allowed;
+}
+
+.newscard__save-btn_active:hover {
+  background: rgba(255, 255, 255, 1)
+    url("../../../public/pictures/savedhover.svg") center/20px no-repeat;
+}
+
+.newscard__save-btn_saved {
+  background: #2f71e5 url("../../../public/pictures/savedmarked.svg")
+    center/20px no-repeat;
+} */
+
+/* Tooltip */
+/* .newscard__tooltip {
+  position: absolute;
+  top: 8px;
+  right: 64px;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+} */
+
+.newscard {
+  width: 400px;
+  height: 576px;
+  position: relative;
+  border-radius: 10px;
+  margin: 8px;
+  background-color: #fff;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.newscard__image {
+  width: 100%;
+  height: 272px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.newscard__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+}
+
+.newscard__date {
+  margin: 20px 0 12px;
+  color: #b6bcbf;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.newscard__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0 0 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.newscard__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  margin: 0 0 46px;
+  word-wrap: break-word;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #1a1b22;
+}
+
+.newscard__source {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+  margin-top: auto; /* pushes source to bottom */
+  margin-bottom: 24px;
+}
+
+/* Save button (inactive, active, saved) */
+.newscard__save-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.newscard__save-btn_inactive {
+  background: rgba(255, 255, 255, 0.9)
+    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
+  cursor: not-allowed;
+}
+
+.newscard__save-btn_active:hover {
+  background: rgba(255, 255, 255, 1)
+    url("../../../public/pictures/savedhover.svg") center/20px no-repeat;
+}
+
+.newscard__save-btn_saved {
+  background: #2f71e5 url("../../../public/pictures/savedmarked.svg")
+    center/20px no-repeat;
+}
+
+/* Keyword label (if you use it) */
+.newscard__keyword {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 22px;
+  text-transform: capitalize;
+  border: none;
+  background-color: #fff;
+}
+
+/* Tooltip for logged-out state */
+.newscard__tooltip {
+  background-color: #fff;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  z-index: 2;
+  width: 182px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #1a1b22;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

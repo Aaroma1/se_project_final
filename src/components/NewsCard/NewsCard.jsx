@@ -26,15 +26,16 @@ function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
           alt={article.title}
         />
         <div className="newscard__content">
-          <h3 className="newscard__title">{article.title}</h3>
-          <p className="newscard__description">{article.description}</p>
-          <p className="newscard__date">
+          <h2 className="newscard__date">
             {new Date(article.publishedAt).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
               year: "numeric",
             })}
-          </p>
+          </h2>
+          <h3 className="newscard__title">{article.title}</h3>
+          <p className="newscard__description">{article.description}</p>
+
           <p className="newscard__source">{article.source?.name}</p>
         </div>
       </a>

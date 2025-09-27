@@ -119,7 +119,12 @@ function App() {
 
   return (
     <div className="app">
-      <button onClick={() => setLoggedIn((prev) => !prev)}>
+      <button
+        onClick={() => {
+          setLoggedIn((prev) => !prev);
+          setIsLoggedIn((prev) => !prev); // <-- keep in sync
+        }}
+      >
         {loggedIn ? "Log out (fake)" : "Log in (fake)"}
       </button>
       <Header
