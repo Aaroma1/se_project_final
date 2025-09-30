@@ -203,7 +203,7 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
             to="/saved-news"
             className={({ isActive }) =>
               "header__links-item" +
-              (isActive ? " header__links-item_selected" : "") +
+              (isActive ? " header__links-item_saved-selected" : "") +
               (onSavedPage ? " header__links-item_saved" : "")
             }
           >
@@ -222,7 +222,10 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
           {loggedIn ? currentUser?.name || "User" : "Sign in"}
           {loggedIn && (
             <img
-              className="header__links-button_image"
+              className={
+                "header__links-button_image" +
+                (onSavedPage ? " header__links-button_image_saved" : "")
+              }
               src={logoutIcon}
               alt="Logout"
             />

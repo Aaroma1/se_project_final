@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
 import NewsCard from "../NewsCard/NewsCard";
+import "./Results.css";
 
 function Results({
   loading,

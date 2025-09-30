@@ -1,110 +1,6 @@
-/* .newscard {
-  max-width: 400px;
-  height: 576px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
+.newscard a {
+  text-decoration: none;
 }
-
-.newscard__image {
-  width: 100%;
-  height: 272px;
-  object-fit: cover;
-}
-
-.newscard__content {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.newscard__date {
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  color: #b6bcbf;
-  margin-bottom: 12px;
-}
-
-.newscard__title {
-  font-family: "Roboto Slab", sans-serif;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 30px;
-  color: #1a1b22;
-  margin: 0 0 46px 0;
-}
-
-.newscard__description {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #1a1b22;
-  margin: 0 0 46px 0;
-}
-
-.newscard__source {
-  font-family: "Roboto Slab", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  color: #b6bcbf;
-  text-transform: uppercase;
-  margin-top: auto;
-} */
-
-/* Save button */
-/* .newscard__save-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9)
-    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.newscard__save-btn_inactive {
-  background: rgba(255, 255, 255, 0.9)
-    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
-  cursor: not-allowed;
-}
-
-.newscard__save-btn_active:hover {
-  background: rgba(255, 255, 255, 1)
-    url("../../../public/pictures/savedhover.svg") center/20px no-repeat;
-}
-
-.newscard__save-btn_saved {
-  background: #2f71e5 url("../../../public/pictures/savedmarked.svg")
-    center/20px no-repeat;
-} */
-
-/* Tooltip */
-/* .newscard__tooltip {
-  position: absolute;
-  top: 8px;
-  right: 64px;
-  background: #fff;
-  color: #000;
-  font-size: 12px;
-  padding: 6px 8px;
-  border-radius: 4px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-  white-space: nowrap;
-} */
-
 .newscard {
   width: 400px;
   height: 576px;
@@ -196,19 +92,19 @@
 }
 
 .newscard__save-btn_inactive {
-  background: rgba(255, 255, 255, 0.9)
-    url("../../../public/pictures/savednormal.svg") center/20px no-repeat;
+  background: rgba(255, 255, 255, 1)
+    url("../../../public/pictures/savedhover.svg") center/30px no-repeat;
   cursor: not-allowed;
 }
 
 .newscard__save-btn_active:hover {
   background: rgba(255, 255, 255, 1)
-    url("../../../public/pictures/savedhover.svg") center/20px no-repeat;
+    url("../../../public/pictures/savedhover.svg") center/30px no-repeat;
 }
 
 .newscard__save-btn_saved {
-  background: #2f71e5 url("../../../public/pictures/savedmarked.svg")
-    center/20px no-repeat;
+  background: rgba(255, 255, 255, 1)
+    url("../../../public/pictures/Savedbookmark.png") center/30px no-repeat;
 }
 
 /* Keyword label (if you use it) */

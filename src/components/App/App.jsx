@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -9,6 +10,7 @@ import getArticles from "../../utils/newsApi";
 import Results from "../Results/Results";
 
 function App() {
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
 
   // Auth/Modal state (unchanged)
@@ -52,6 +54,7 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
+    navigate("/"); // Redirect to home page after logout
   };
 
   // News search logic
