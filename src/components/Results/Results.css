@@ -18,8 +18,9 @@
   line-height: 46px;
   color: #1a1b22;
   height: 46px;
+  padding-left: 104px;
+  padding-top: 80px;
   margin: 0;
-  padding-left: 140px;
 }
 
 .results {
@@ -64,6 +65,6 @@
   background-color: #e8e8e8;
 }
 
-.results__show-more:active {
+/* .results__show-more:active {
   background-color: #2a65cc;
-}
+} */

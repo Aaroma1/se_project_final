@@ -92,14 +92,26 @@
 }
 
 .newscard__save-btn_inactive {
-  background: rgba(255, 255, 255, 1)
-    url("../../../public/pictures/savedhover.svg") center/30px no-repeat;
+  background: rgba(255, 255, 255)
+    url("../../../public/pictures/savednormal.png") center/30px no-repeat;
   cursor: not-allowed;
+}
+
+.newscard__save-btn_inactive:hover {
+  background: rgba(255, 255, 255) url("../../../public/pictures/savedhover.svg")
+    center/30px no-repeat;
+  opacity: 100%;
+}
+
+.newscard__save-btn_active {
+  background: rgba(255, 255, 255)
+    url("../../../public/pictures/savednormal.png") center/30px no-repeat;
 }
 
 .newscard__save-btn_active:hover {
   background: rgba(255, 255, 255, 1)
     url("../../../public/pictures/savedhover.svg") center/30px no-repeat;
+  opacity: 100%;
 }
 
 .newscard__save-btn_saved {

@@ -36,3 +36,7 @@
   cursor: pointer;
   z-index: 1;
 }
+
+.modal__close_image {
+  color: #ffffff;
+}

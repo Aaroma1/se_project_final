@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   height: 100vh;
   width: 100vw;
@@ -7,13 +7,28 @@ body {
   background: #1a1b22;
   overflow-y: auto;
   overflow-x: hidden;
-}
+} */
 
 .app {
   max-width: 1440px;
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
+
+.app > main,
+.app > section,
+.app > div:not(.footer) {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+/* .app {
+  width: 1440px;
+  height: 720px;
+} */

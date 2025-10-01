@@ -1,23 +1,232 @@
+// import { useState, useEffect } from "react";
+// import CurrentUserContext from "../../contexts/CurrentUserContext";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import Header from "../Header/Header";
+// import Main from "../Main/Main";
+// import About from "../About/About";
+// import Footer from "../Footer/Footer";
+// import SignInModal from "../SignInModal/SignInModal";
+// import SignUpModal from "../SignUpModal/SignUpModal";
+// import CompletedModal from "../CompletedModal/CompletedModal";
+// import getArticles from "../../utils/newsApi";
+// import Results from "../Results/Results";
+// import "./App.css";
+
+// function App() {
+//   const navigate = useNavigate();
+//   const [loggedIn, setLoggedIn] = useState(false);
+
+//   // Auth/Modal state (unchanged)
+//   const [isSignInOpen, setIsSignInOpen] = useState(false);
+//   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [currentUser, setCurrentUser] = useState({});
+//   const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
+
+//   // News search state
+//   const [articles, setArticles] = useState([]);
+//   const [visibleCount, setVisibleCount] = useState(0);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+//   const [hasSearched, setHasSearched] = useState(false);
+//   // Saved articles state
+//   const [savedArticles, setSavedArticles] = useState([]);
+
+//   // Modal logic (unchanged)
+//   const openSignInModal = () => {
+//     setIsSignInOpen(true);
+//     setIsSignUpOpen(false);
+//   };
+//   const openSignUpModal = () => {
+//     setIsSignUpOpen(true);
+//     setIsSignInOpen(false);
+//   };
+//   const closeModals = () => {
+//     setIsSignInOpen(false);
+//     setIsSignUpOpen(false);
+//   };
+//   const handleSignIn = ({ email, password }) => {
+//     setIsLoggedIn(true);
+//     setCurrentUser({ email });
+//     closeModals();
+//   };
+//   // const handleSignUp = ({ email, password, name }) => {
+//   //   setIsLoggedIn(true);
+//   //   setCurrentUser({ email, name });
+//   //   closeModals();
+//   // };
+//   const handleSignUp = ({ email, password, name }) => {
+//     // Close SignUpModal
+//     setIsSignUpOpen(false);
+
+//     // Open CompletedModal
+//     setIsCompletedModalOpen(true);
+
+//     // Save user info (optional now or after sign-in)
+//     setCurrentUser({ email, name });
+//   };
+//   const handleCompletedSignIn = () => {
+//     setIsCompletedModalOpen(false); // close completed modal
+//     setIsSignInOpen(true); // open SignInModal
+//   };
+//   const handleLogout = () => {
+//     setIsLoggedIn(false);
+//     setCurrentUser({});
+//     navigate("/"); // Redirect to home page after logout
+//   };
+
+//   // News search logic
+//   const handleSearch = async (keyword) => {
+//     if (!keyword.trim()) {
+//       setError("Please enter a keyword");
+//       setArticles([]);
+//       setHasSearched(false);
+//       return;
+//     }
+//     setLoading(true);
+//     setError("");
+//     setArticles([]);
+//     setVisibleCount(0);
+//     setHasSearched(true);
+//     try {
+//       const results = await getArticles(keyword);
+//       if (!results || results.length === 0) {
+//         setArticles([]);
+//         setVisibleCount(0);
+//       } else {
+//         setArticles(results);
+//         setVisibleCount(3);
+//       }
+//     } catch (err) {
+//       setError(
+//         "Sorry, something went wrong during the request. Please try again later."
+//       );
+//     } finally {
+//       // Ensure Preloader is visible for at least 300ms
+//       setTimeout(() => setLoading(false), 300);
+//     }
+//   };
+//   const handleShowMore = () => {
+//     setVisibleCount((prev) => Math.min(prev + 3, articles.length));
+//   };
+
+//   const handleSaveArticle = (article) => {
+//     // optional: avoid duplicates
+//     setSavedArticles((prev) => {
+//       // check by URL (or some unique id)
+//       if (prev.some((a) => a.url === article.url)) {
+//         return prev;
+//       }
+//       return [article, ...prev];
+//     });
+//   };
+
+//   const handleRemoveArticle = (article) => {
+//     setSavedArticles((prev) => prev.filter((a) => a.url !== article.url));
+//   };
+
+//   useEffect(() => {
+//     const tokenFromStorage = localStorage.getItem("jwt");
+//     if (tokenFromStorage) {
+//       auth
+//         .checkToken(tokenFromStorage)
+//         .then((res) => {
+//           setCurrentUser(res);
+//           setLoggedIn(true);
+//         })
+//         .catch(() => {
+//           setLoggedIn(false);
+//         });
+//     }
+//   }, []);
+
+//   return (
+//     <CurrentUserContext.Provider value={currentUser}>
+//       <div className="app">
+//         <button
+//           onClick={() => {
+//             setLoggedIn((prev) => !prev);
+//             setIsLoggedIn((prev) => !prev); // <-- keep in sync
+//           }}
+//         >
+//           {loggedIn ? "Log out (fake)" : "Log in (fake)"}
+//         </button>
+
+//         <Header
+//           onSignInClick={openSignInModal}
+//           loggedIn={isLoggedIn}
+//           onSignOutClick={handleLogout}
+//         />
+//         <Main onSearch={handleSearch} isLoading={loading} />
+//         {hasSearched && (
+//           <Results
+//             loading={loading}
+//             error={error}
+//             hasSearched={hasSearched}
+//             articles={articles}
+//             visibleCount={visibleCount}
+//             onShowMore={handleShowMore}
+//             loggedIn={isLoggedIn}
+//             savedArticles={savedArticles}
+//             onSave={handleSaveArticle}
+//             onRemove={handleRemoveArticle}
+//           />
+//         )}
+//         <About />
+//         <Footer />
+//         {/* Modals */}
+//         <SignInModal
+//           isOpen={isSignInOpen}
+//           onClose={closeModals}
+//           onSignIn={handleSignIn}
+//           onSwitchToSignUp={openSignUpModal}
+//         />
+//         <SignUpModal
+//           isOpen={isSignUpOpen}
+//           onClose={closeModals}
+//           onSignUp={handleSignUp}
+//           onSwitchToSignIn={openSignInModal}
+//         />
+//         <CompletedModal
+//           isOpen={isCompletedModalOpen}
+//           onClose={() => setIsCompletedModalOpen(false)}
+//           onSignIn={handleCompletedSignIn}
+//         />
+//       </div>
+//     </CurrentUserContext.Provider>
+//   );
+// }
+
+// export default App;
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
-import getArticles from "../../utils/newsApi";
+import CompletedModal from "../CompletedModal/CompletedModal";
 import Results from "../Results/Results";
+import SavedArticles from "../SavedArticles/SavedArticles"; // <-- NEW
+import getArticles from "../../utils/newsApi";
+
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  // Auth/Modal state (unchanged)
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  // Auth state
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+
+  // Modal state
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
 
   // News search state
   const [articles, setArticles] = useState([]);
@@ -25,10 +234,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
+
   // Saved articles state
   const [savedArticles, setSavedArticles] = useState([]);
+  // Track last search keyword
+  const [lastKeyword, setLastKeyword] = useState("");
 
-  // Modal logic (unchanged)
+  // ---------- Modal logic ----------
   const openSignInModal = () => {
     setIsSignInOpen(true);
     setIsSignUpOpen(false);
@@ -41,24 +253,33 @@ function App() {
     setIsSignInOpen(false);
     setIsSignUpOpen(false);
   };
+
   const handleSignIn = ({ email, password }) => {
     setIsLoggedIn(true);
-    setCurrentUser({ email });
+    setCurrentUser({ email, name: "Demo User" }); // demo name until backend
     closeModals();
   };
+
   const handleSignUp = ({ email, password, name }) => {
-    setIsLoggedIn(true);
+    setIsSignUpOpen(false);
+    setIsCompletedModalOpen(true);
     setCurrentUser({ email, name });
-    closeModals();
   };
+
+  const handleCompletedSignIn = () => {
+    setIsCompletedModalOpen(false);
+    setIsSignInOpen(true);
+  };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
-    navigate("/"); // Redirect to home page after logout
+    navigate("/"); // back to home after logout
   };
 
-  // News search logic
+  // ---------- News search logic ----------
   const handleSearch = async (keyword) => {
+    setLastKeyword(keyword);
     if (!keyword.trim()) {
       setError("Please enter a keyword");
       setArticles([]);
@@ -73,7 +294,8 @@ function App() {
     try {
       const results = await getArticles(keyword);
       if (!results || results.length === 0) {
-        setError("Nothing Found");
+        setArticles([]);
+        setVisibleCount(0);
       } else {
         setArticles(results);
         setVisibleCount(3);
@@ -83,21 +305,22 @@ function App() {
         "Sorry, something went wrong during the request. Please try again later."
       );
     } finally {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 300);
     }
   };
+
   const handleShowMore = () => {
     setVisibleCount((prev) => Math.min(prev + 3, articles.length));
   };
 
+  // ---------- Saved articles logic ----------
   const handleSaveArticle = (article) => {
-    // optional: avoid duplicates
     setSavedArticles((prev) => {
-      // check by URL (or some unique id)
       if (prev.some((a) => a.url === article.url)) {
         return prev;
       }
-      return [article, ...prev];
+      // Attach the last search keyword
+      return [{ ...article, keyword: lastKeyword }, ...prev];
     });
   };
 
@@ -105,6 +328,7 @@ function App() {
     setSavedArticles((prev) => prev.filter((a) => a.url !== article.url));
   };
 
+  // ---------- Check token on mount ----------
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("jwt");
     if (tokenFromStorage) {
@@ -113,60 +337,102 @@ function App() {
         .then((res) => {
           setCurrentUser(res);
           setLoggedIn(true);
+          setIsLoggedIn(true);
         })
         .catch(() => {
           setLoggedIn(false);
+          setIsLoggedIn(false);
         });
     }
   }, []);
 
   return (
-    <div className="app">
-      <button
-        onClick={() => {
-          setLoggedIn((prev) => !prev);
-          setIsLoggedIn((prev) => !prev); // <-- keep in sync
-        }}
-      >
-        {loggedIn ? "Log out (fake)" : "Log in (fake)"}
-      </button>
-      <Header
-        onSignInClick={openSignInModal}
-        loggedIn={isLoggedIn}
-        onSignOutClick={handleLogout}
-      />
-      <Main onSearch={handleSearch} isLoading={loading} />
-      {hasSearched && (
-        <Results
-          loading={loading}
-          error={error}
-          hasSearched={hasSearched}
-          articles={articles}
-          visibleCount={visibleCount}
-          onShowMore={handleShowMore}
-          loggedIn={isLoggedIn}
-          savedArticles={savedArticles}
-          onSave={handleSaveArticle}
-          onRemove={handleRemoveArticle}
-        />
-      )}
-      <About />
-      <Footer />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        {/* TEMP test button, you can delete later */}
+        <button
+          onClick={() => {
+            setLoggedIn((prev) => !prev);
+            setIsLoggedIn((prev) => !prev);
+          }}
+        >
+          {loggedIn ? "Log out (fake)" : "Log in (fake)"}
+        </button>
 
-      {/* Modals */}
-      <SignInModal
-        isOpen={isSignInOpen}
-        onClose={closeModals}
-        onSignIn={handleSignIn}
-        onSwitchToSignUp={openSignUpModal}
-      />
-      <SignUpModal
-        isOpen={isSignUpOpen}
-        onClose={closeModals}
-        onSignUp={handleSignUp}
-        onSwitchToSignIn={openSignInModal}
-      />
-    </div>
+        {/* Header always visible */}
+        <Header
+          onSignInClick={openSignInModal}
+          loggedIn={isLoggedIn}
+          onSignOutClick={handleLogout}
+        />
+
+        {/* Routes handle page switching */}
+        <Routes>
+          {/* Home */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Main onSearch={handleSearch} isLoading={loading} />
+                {hasSearched && (
+                  <Results
+                    loading={loading}
+                    error={error}
+                    hasSearched={hasSearched}
+                    articles={articles}
+                    visibleCount={visibleCount}
+                    onShowMore={handleShowMore}
+                    loggedIn={isLoggedIn}
+                    savedArticles={savedArticles}
+                    onSave={handleSaveArticle}
+                    onRemove={handleRemoveArticle}
+                  />
+                )}
+                <About />
+              </>
+            }
+          />
+
+          {/* Saved Articles (only accessible when logged in) */}
+          <Route
+            path="/saved-articles"
+            element={
+              isLoggedIn ? (
+                <SavedArticles
+                  currentUser={currentUser}
+                  savedArticles={savedArticles}
+                  onRemove={handleRemoveArticle}
+                  loggedIn={isLoggedIn}
+                />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+        </Routes>
+
+        <Footer />
+
+        {/* Modals */}
+        <SignInModal
+          isOpen={isSignInOpen}
+          onClose={closeModals}
+          onSignIn={handleSignIn}
+          onSwitchToSignUp={openSignUpModal}
+        />
+        <SignUpModal
+          isOpen={isSignUpOpen}
+          onClose={closeModals}
+          onSignUp={handleSignUp}
+          onSwitchToSignIn={openSignInModal}
+        />
+        <CompletedModal
+          isOpen={isCompletedModalOpen}
+          onClose={() => setIsCompletedModalOpen(false)}
+          onSignIn={handleCompletedSignIn}
+        />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

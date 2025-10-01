@@ -12,7 +12,7 @@ function Input({
   required = true,
 }) {
   return (
-    <label className="form__label" htmlFor={name}>
+    <label className="form__input-title" htmlFor={name}>
       {label}
       <input
         id={name}
