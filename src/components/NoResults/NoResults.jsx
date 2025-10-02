@@ -1,16 +1,15 @@
-import React from "react";
 import "./NoResults.css";
 
 function NoResults() {
   return (
-    <div className="results__background">
+    <div className="no-results">
       <img
-        src="/pictures/NothingFound.png"
+        src="/Images/NotFound.svg"
         alt="Not found"
-        className="results__missing-image"
+        className="no-results__missing-image"
       />
-      <h3 className="results__missing-title">Nothing Found</h3>
-      <p className="results__missing-text">
+      <h3 className="no-results__missing-title">Nothing Found</h3>
+      <p className="no-results__missing-text">
         Sorry, but nothing matched
         <br />
         your search terms.

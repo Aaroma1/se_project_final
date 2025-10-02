@@ -1,4 +1,3 @@
-import React from "react";
 import "./About.css";
 
 function About() {
@@ -7,7 +6,7 @@ function About() {
       <div className="about__avatar-container">
         <img
           className="about__avatar"
-          src="/pictures/Aaron-Main-Headshot.jpg"
+          src="/Images/Aaron-Main-Headshot.jpg"
           alt="Author avatar"
         />
       </div>

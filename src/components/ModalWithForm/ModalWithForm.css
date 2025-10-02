@@ -32,7 +32,9 @@
   max-width: 90px;
   max-height: 32px;
   align-self: center;
-  margin-bottom: 24px;
+  margin: 0;
+  padding-top: 34px;
+  padding-bottom: 22px;
 }
 
 .modal__fieldset {
@@ -76,24 +78,6 @@
   position: relative;
   top: 10px;
 }
-
-/* .modal__submit {
-  width: 100%;
-  max-width: 358px;
-  height: 64px;
-  border-radius: 100px;
-  background: #e6e8eb;
-  color: #b6bcbf;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  border: none;
-  margin: 0 0 16px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .modal__submit {
   width: 100%;

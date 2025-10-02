@@ -1,19 +1,19 @@
-// import React, { useState } from "react";
-// import "./NewsCard.css"; // make sure you have your styles here
+// import { useState } from "react";
+// import "./NewsCard.css";
 
 // function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
 //   const [showTooltip, setShowTooltip] = useState(false);
 
 //   const handleSaveClick = (e) => {
-//     e.preventDefault(); // prevent navigating when clicking the icon
+//     e.preventDefault();
 //     if (!loggedIn) {
 //       setShowTooltip(true);
 //       return;
 //     }
 //     if (isSaved) {
-//       onRemove(article);
+//       onRemove(article); // remove from saved
 //     } else {
-//       onSave(article);
+//       onSave(article); // save to saved
 //     }
 //   };
 
@@ -35,12 +35,11 @@
 //           </h2>
 //           <h3 className="newscard__title">{article.title}</h3>
 //           <p className="newscard__description">{article.description}</p>
-
 //           <p className="newscard__source">{article.source?.name}</p>
 //         </div>
 //       </a>
 
-//       {/* Save Icon */}
+//       {/* Save/Remove button */}
 //       <button
 //         className={`newscard__save-btn ${
 //           !loggedIn
@@ -53,9 +52,7 @@
 //         onMouseEnter={() => !loggedIn && setShowTooltip(true)}
 //         onMouseLeave={() => setShowTooltip(false)}
 //         type="button"
-//       >
-//         {/* visually represented by CSS background */}
-//       </button>
+//       />
 
 //       {/* Tooltip */}
 //       {showTooltip && !loggedIn && (
@@ -67,11 +64,19 @@
 
 // export default NewsCard;
 
-import React, { useState } from "react";
+import { useState } from "react";
 import "./NewsCard.css";
 
-function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
+function NewsCard({
+  article,
+  loggedIn,
+  isSaved,
+  onSave,
+  onRemove,
+  isSavedPage,
+}) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showDeleteTooltip, setShowDeleteTooltip] = useState(false);
 
   const handleSaveClick = (e) => {
     e.preventDefault();
@@ -86,8 +91,17 @@ function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
     }
   };
 
+  const handleDeleteClick = (e) => {
+    e.preventDefault();
+    onRemove(article);
+  };
+
   return (
     <div className="newscard">
+      {/* Keyword badge for saved articles */}
+      {isSavedPage && article.keyword && (
+        <div className="newscard__keyword">{article.keyword}</div>
+      )}
       <a href={article.url} target="_blank" rel="noopener noreferrer">
         <img
           className="newscard__image"
@@ -108,24 +122,42 @@ function NewsCard({ article, loggedIn, isSaved, onSave, onRemove }) {
         </div>
       </a>
 
-      {/* Save/Remove button */}
-      <button
-        className={`newscard__save-btn ${
-          !loggedIn
-            ? "newscard__save-btn_inactive"
-            : isSaved
-            ? "newscard__save-btn_saved"
-            : "newscard__save-btn_active"
-        }`}
-        onClick={handleSaveClick}
-        onMouseEnter={() => !loggedIn && setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-        type="button"
-      />
+      {/* If on Saved Articles page → delete button */}
+      {isSavedPage ? (
+        <div className="newscard__delete-container">
+          <button
+            className="newscard__delete-btn"
+            onClick={handleDeleteClick}
+            onMouseEnter={() => setShowDeleteTooltip(true)}
+            onMouseLeave={() => setShowDeleteTooltip(false)}
+            type="button"
+          />
+          {showDeleteTooltip && (
+            <span className="newscard__delete-tooltip">Remove from saved</span>
+          )}
+        </div>
+      ) : (
+        <>
+          {/* Save button (Results page) */}
+          <button
+            className={`newscard__save-btn ${
+              !loggedIn
+                ? "newscard__save-btn_inactive"
+                : isSaved
+                ? "newscard__save-btn_saved"
+                : "newscard__save-btn_active"
+            }`}
+            onClick={handleSaveClick}
+            onMouseEnter={() => !loggedIn && setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+            type="button"
+          />
 
-      {/* Tooltip */}
-      {showTooltip && !loggedIn && (
-        <span className="newscard__tooltip">Sign in to save articles</span>
+          {/* Tooltip */}
+          {showTooltip && !loggedIn && (
+            <span className="newscard__tooltip">Sign in to save articles</span>
+          )}
+        </>
       )}
     </div>
   );

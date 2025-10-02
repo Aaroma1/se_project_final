@@ -8,7 +8,8 @@ function SearchForm({ onSearch, isLoading }) {
 
   // Validate whenever keyword changes
   useEffect(() => {
-    setIsValid(keyword.trim().length > 0);
+    const len = keyword.trim().length;
+    setIsValid(len >= 2 && len <= 50);
   }, [keyword]);
 
   const handleSubmit = (e) => {
@@ -33,9 +34,18 @@ function SearchForm({ onSearch, isLoading }) {
         onChange={(e) => setKeyword(e.target.value)}
         disabled={isLoading}
         required
+        minLength={2}
+        maxLength={50}
       />
-      {touched && !isValid && (
-        <span className="search__error">Please enter a keyword</span>
+      {touched && keyword.trim().length < 2 && (
+        <span className="search__error">
+          Please enter at least 2 characters
+        </span>
+      )}
+      {touched && keyword.trim().length > 60 && (
+        <span className="search__error">
+          Please enter no more than 60 characters
+        </span>
       )}
       <button
         className={`search__button ${

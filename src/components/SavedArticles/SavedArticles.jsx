@@ -1,5 +1,5 @@
 // src/components/SavedArticles/SavedArticles.jsx
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./SavedArticles.css";
 
@@ -55,6 +55,7 @@ function SavedArticles({ currentUser, savedArticles, onRemove, loggedIn }) {
             isSaved={true} // always saved on this page
             onSave={() => {}} // optional: no-op, since they’re already saved
             onRemove={onRemove}
+            isSavedPage={true}
           />
         ))}
       </div>

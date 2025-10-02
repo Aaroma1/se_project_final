@@ -19,15 +19,21 @@
   width: 100%;
   height: 272px;
   object-fit: cover;
+  object-position: center;
+  display: block;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
 .newscard__content {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  padding: 0 24px;
+  justify-content: flex-start;
+  padding-top: 0;
+  padding-left: 24px;
+  padding-right: 24;
+  padding-bottom: 56px;
 }
 
 .newscard__date {
@@ -48,13 +54,21 @@
   margin: 0 0 16px;
   text-overflow: ellipsis;
   overflow: hidden;
+  max-height: 60px; /* adjust as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical;
 }
 
 .newscard__description {
+  max-height: 80px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 3;
   overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0 0 46px;
   word-wrap: break-word;
   font-family: "Roboto", sans-serif;
@@ -65,6 +79,7 @@
 }
 
 .newscard__source {
+  position: absolute;
   font-family: "Roboto Slab", sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -72,8 +87,10 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: #b6bcbf;
-  margin-top: auto; /* pushes source to bottom */
-  margin-bottom: 24px;
+  left: 24px;
+  right: 24;
+  bottom: 24px;
+  margin: 0;
 }
 
 /* Save button (inactive, active, saved) */
@@ -93,30 +110,30 @@
 
 .newscard__save-btn_inactive {
   background: rgba(255, 255, 255)
-    url("../../../public/pictures/savednormal.png") center/30px no-repeat;
+    url("../../../public/Images/bookmarkNormal.svg") center/30px no-repeat;
   cursor: not-allowed;
 }
 
 .newscard__save-btn_inactive:hover {
-  background: rgba(255, 255, 255) url("../../../public/pictures/savedhover.svg")
-    center/30px no-repeat;
+  background: rgba(255, 255, 255)
+    url("../../../public/Images/bookmarkHover.svg") center/30px no-repeat;
   opacity: 100%;
 }
 
 .newscard__save-btn_active {
   background: rgba(255, 255, 255)
-    url("../../../public/pictures/savednormal.png") center/30px no-repeat;
+    url("../../../public/Images/bookmarkNormal.svg") center/30px no-repeat;
 }
 
 .newscard__save-btn_active:hover {
   background: rgba(255, 255, 255, 1)
-    url("../../../public/pictures/savedhover.svg") center/30px no-repeat;
+    url("../../../public/Images/bookmarkHover.svg") center/30px no-repeat;
   opacity: 100%;
 }
 
 .newscard__save-btn_saved {
   background: rgba(255, 255, 255, 1)
-    url("../../../public/pictures/Savedbookmark.png") center/30px no-repeat;
+    url("../../../public/Images/bookmarkMarked.svg") center/30px no-repeat;
 }
 
 /* Keyword label (if you use it) */
@@ -155,4 +172,68 @@
   line-height: 40px;
   color: #1a1b22;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.newscard__delete-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.newscard__delete-btn {
+  width: 40px;
+  height: 40px;
+  background: #fff url("../../../public/Images/trashNormal.svg") no-repeat
+    center;
+  background-size: 24px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.newscard__delete-btn:hover {
+  background: #fff url("../../../public/Images/trashHover.svg") no-repeat center;
+}
+
+/* Tooltip */
+.newscard__delete-tooltip {
+  position: absolute;
+  top: 0;
+  right: 100%; /* left of the delete button */
+  margin-right: 5px; /* 5px gap */
+  width: 159px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #000000;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.newscard__keyword {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  min-width: 60px;
+  height: 40px;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1a1b22;
+  z-index: 3;
+  box-sizing: border-box;
+  padding: 0 12px;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./Modal.css";
 
 function Modal({ isOpen, onClose, children }) {

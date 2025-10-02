@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import logoutIcon from "../../../public/pictures/logout.png";
+import logoutIcon from "../../../public/Images/logout.svg";
 
 function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
   const currentUser = useContext(CurrentUserContext);

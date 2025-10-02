@@ -5,10 +5,10 @@ html {
 }
 
 .main {
+  height: 496px;
   position: relative;
   z-index: 2;
   width: 100%;
-  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -25,16 +25,35 @@ html {
   letter-spacing: 0px;
   color: #fff;
   text-align: center;
-  margin-top: 32px;
+  padding-top: 32px;
+  margin: 0;
+  width: 608px;
+  height: 24px;
+  padding-bottom: 70px;
   z-index: 2;
   pointer-events: auto;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
+/* .main__background {
+  background-image: url("/Images/main.png");
+  background-size: contain;
+  background-position: top;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 0;
+} */
+
 .main__background {
-  background-image: url("/pictures/main.png");
-  background-size: cover;
-  background-position: center top;
+  background-image: url("/Images/main.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center -80px;
   position: absolute;
   top: 0;
   left: 0;
@@ -51,8 +70,12 @@ html {
   font-size: 60px;
   line-height: 60px;
   color: #fff;
-  text-align: center;
+  text-align: left;
   z-index: 2;
   pointer-events: auto;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  width: 608px;
+  height: 128px;
+  margin: 0;
+  padding: 0;
 }

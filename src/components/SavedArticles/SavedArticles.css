@@ -3,7 +3,7 @@
   padding-bottom: 40px;
   min-height: 60vh;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .saved__container {
@@ -15,7 +15,7 @@
 
 .saved__container-inner {
   width: 100%;
-  /* margin removed, not needed */
+
   box-sizing: border-box;
   padding-left: 104px;
 }
@@ -29,6 +29,7 @@
   width: 712px;
   height: 24px;
   padding: 0;
+  margin: 0;
 }
 
 .saved__heading {
@@ -40,6 +41,7 @@
   width: 530px;
   height: 92px;
   padding-top: 28px;
+  margin: 0;
 }
 
 .saved__text {
@@ -54,6 +56,7 @@
   padding-bottom: 56px;
   padding-left: 0;
   padding-right: 0;
+  margin: 0;
 }
 
 .saved__keywords {
@@ -68,7 +71,6 @@
   align-items: start;
   width: 100%;
   max-width: 1232px;
-  /* margin removed, not needed */
   padding-left: 104px;
   padding-right: 104px;
 }
