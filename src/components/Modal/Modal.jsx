@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./Modal.css";
+import ModalCloseButton from "../../../public/Images/ModalCloseButton.svg";
 
 function Modal({ isOpen, onClose, children }) {
   useEffect(() => {
@@ -21,7 +22,12 @@ function Modal({ isOpen, onClose, children }) {
           onClick={onClose}
           aria-label="Close modal"
         >
-          ×
+          {/* × */}{" "}
+          <img
+            className="modal__close-btn"
+            src={ModalCloseButton}
+            alt="modal-close"
+          />
         </button>
         {children}
       </div>
