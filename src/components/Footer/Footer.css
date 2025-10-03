@@ -44,3 +44,22 @@
 .footer__button:hover {
   background: #f0f0f0;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    padding: 0 40px;
+  }
+
+  .footer__title {
+    width: 300px;
+    height: 22px;
+    font-size: 16px;
+  }
+
+  .footer__button {
+    padding: 0;
+  }
+}

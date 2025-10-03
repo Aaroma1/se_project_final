@@ -23,7 +23,7 @@
   height: 464px;
   max-width: 464px;
   max-height: 464px;
-  margin-right: 48px;
+  padding-right: 48px;
 }
 
 .about__avatar {
@@ -60,4 +60,37 @@
   line-height: 18px;
   color: #1a1b22;
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    height: 354px;
+    min-height: 354px;
+    max-height: 354px;
+    column-gap: 0;
+    padding-top: 40px;
+    padding-bottom: 61px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .about__avatar-container {
+    width: 232px;
+    height: 232px;
+    max-width: 232px;
+    max-height: 232px;
+    padding-right: 32px;
+  }
+
+  .about__title {
+    width: 424px;
+    height: 34px;
+    font-size: 30px;
+    line-height: 34px;
+    margin: 0;
+    padding-bottom: 16px;
+  }
+
+  .about__description {
+    font-size: 18px;
+  }
 }
