@@ -56,7 +56,7 @@ function App() {
 
   const handleSignIn = ({ email, password }) => {
     setIsLoggedIn(true);
-    setCurrentUser({ email, name: "Demo User" }); // demo name until backend
+    setCurrentUser({ email, name: "Demo User" });
     closeModals();
   };
 

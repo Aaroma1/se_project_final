@@ -51,6 +51,7 @@
     min-height: 64px;
     max-height: 64px;
     padding: 0 40px;
+    flex-shrink: 0;
   }
 
   .footer__title {
