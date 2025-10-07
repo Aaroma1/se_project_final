@@ -94,3 +94,50 @@
     font-size: 18px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .about {
+    height: 752px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 0;
+    box-sizing: border-box;
+  }
+
+  .about__avatar-container {
+    margin-top: 0;
+    padding-right: 0;
+    display: flex;
+    justify-content: center;
+    height: 272px !important;
+    max-height: 272px !important;
+    width: 272px !important;
+    max-width: 272px !important;
+  }
+
+  .about__avatar {
+    margin: 0 !important;
+    width: 272px !important;
+    height: 272px !important;
+    display: block;
+  }
+
+  .about__title {
+    width: 288px;
+    height: 40px;
+    font-size: 30px;
+    margin: 0 !important;
+    padding: 24px 16px 0;
+  }
+
+  .about__description {
+    width: 288px;
+    min-height: 240px;
+    font-size: 18px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 0 !important;
+  }
+}

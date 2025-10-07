@@ -289,3 +289,84 @@
     left: 8px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .newscard {
+    max-width: 288px !important;
+    height: 440px !important;
+    margin: 8px 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .newscard__image {
+    width: 100%;
+    height: 196px; /* as requested */
+    object-fit: cover;
+  }
+
+  .newscard__content {
+    /* height: 244px !important; content area */
+    /* padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 16px; */
+    width: 288px !important;
+    height: 244px !important;
+    padding: 16px 16px !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .newscard__date {
+    font-size: 18px;
+    width: 256px !important;
+    max-width: 256px !important;
+    margin: 0;
+  }
+
+  .newscard__title {
+    max-height: 48px;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    margin: 0;
+    font-size: 22px;
+    max-width: 256px;
+    max-height: 48px;
+    -webkit-line-clamp: 2;
+  }
+
+  .newscard__description {
+    margin: 0;
+    font-size: 16px;
+    max-width: 256px;
+    max-height: 88px;
+    -webkit-line-clamp: 4;
+  }
+
+  .newscard__source {
+    bottom: 16px;
+    font-size: 16px;
+    max-width: 256px;
+  }
+
+  .newscard__delete-btn {
+    top: 16px;
+    right: 16px;
+  }
+
+  .newscard__tooltip {
+    top: 16px;
+    right: 60px;
+  }
+
+  .newscard__keyword {
+    top: 8px;
+    left: 10px;
+    min-width: 60px;
+    height: 40px;
+    padding: 0 12px;
+  }
+}

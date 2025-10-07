@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -9,26 +9,38 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
   const location = useLocation();
   const onSavedPage = location.pathname === "/saved-articles";
 
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
   const handleAuthClick = () => {
     if (loggedIn && onSignOutClick) {
       onSignOutClick();
     } else if (!loggedIn && onSignInClick) {
       onSignInClick();
     }
+    setMobileOpen(false);
   };
 
   return (
-    <header className={`header ${onSavedPage ? "header__saved" : ""}`}>
-      {/* Logo always on left */}
+    <header
+      className={`header ${onSavedPage ? "header__saved" : ""} ${
+        mobileOpen ? "mobile-open" : ""
+      }`}
+    >
       <NavLink
         className={`header__logo header__title ${
           onSavedPage ? "header__title-saved" : ""
         }`}
         to="/"
+        onClick={() => setMobileOpen(false)}
       >
         NewsExplorer
       </NavLink>
 
+      {/* desktop links (hidden on phone via CSS) */}
       <nav className="header__links">
         <NavLink
           to="/"
@@ -75,6 +87,78 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
           )}
         </button>
       </nav>
+
+      {/* burger button (visible only on phone via CSS) */}
+      <button
+        className={`header__burger ${mobileOpen ? "header__burger_open" : ""}`}
+        type="button"
+        aria-expanded={mobileOpen}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        onClick={() => setMobileOpen((s) => !s)}
+      />
+
+      {/* mobile dropdown (fixed 174px high) */}
+      {/* <div
+        className={`mobile-nav ${mobileOpen ? "mobile-nav_open" : ""} ${
+          onSavedPage ? "mobile-nav_saved" : ""
+        }`}
+        aria-hidden={!mobileOpen}
+      > */}
+      <div
+        className={`mobile-nav 
+    ${mobileOpen ? "mobile-nav_open" : ""} 
+    ${onSavedPage ? "mobile-nav_saved" : ""} 
+    ${loggedIn ? "mobile-nav_logged-in" : "mobile-nav_logged-out"}
+  `}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="mobile-nav__inner">
+          <NavLink
+            className="mobile-nav__button"
+            to="/"
+            onClick={() => setMobileOpen(false)}
+          >
+            Home
+          </NavLink>
+
+          {!loggedIn ? (
+            <button
+              className="mobile-nav__button"
+              type="button"
+              onClick={() => {
+                onSignInClick?.();
+                setMobileOpen(false);
+              }}
+            >
+              Sign in
+            </button>
+          ) : (
+            <>
+              <NavLink
+                className="mobile-nav__button"
+                to="/saved-articles"
+                onClick={() => setMobileOpen(false)}
+              >
+                Saved Articles
+              </NavLink>
+              <button
+                className="mobile-nav__button mobile-nav__button_action"
+                type="button"
+                onClick={handleAuthClick}
+              >
+                {currentUser?.name || "User"} — Sign out
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+      {mobileOpen && (
+        <div
+          className="mobile-overlay"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
     </header>
   );
 }

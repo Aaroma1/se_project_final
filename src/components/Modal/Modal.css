@@ -1,4 +1,4 @@
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,6 +22,31 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+} */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__container {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* let children fill width */
 }
 
 .modal__close {
@@ -42,4 +67,56 @@
   width: 32px;
   height: 32px;
   display: block;
+}
+
+/* @media screen and (max-width: 320px) {
+  .modal {
+    max-height: 560px;
+    box-sizing: border-box;
+  }
+
+  .modal__container {
+    width: 320px !important;
+  }
+
+  .modal__form {
+    width: 320px !important;
+    max-width: 320px !important;
+    height: 560px !important;
+    box-sizing: border-box;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+} */
+
+@media screen and (max-width: 320px) {
+  .modal__container {
+    width: 320px;
+    height: 560px;
+    max-width: none;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

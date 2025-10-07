@@ -97,3 +97,44 @@
     margin-top: 32px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .results {
+    padding: 0;
+    background-color: #f5f6f7;
+  }
+
+  .results__header-container {
+    height: 124px;
+  }
+
+  .results__header {
+    width: 288px !important;
+    max-width: 288px !important;
+    height: 34px;
+    font-size: 30px;
+    line-height: 34px;
+    padding-left: 16px;
+    padding-top: 32px;
+  }
+
+  .results__grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column stack */
+    gap: 8px;
+    justify-items: center;
+  }
+
+  .results__show-more {
+    width: 288px;
+    height: 56px;
+    font-size: 18px;
+    padding: 0;
+    margin: 16px auto 24px auto; /* spacing spec: 16px below grid and 24px above bottom */
+  }
+
+  .results__background,
+  .results__missing-image {
+    max-height: calc(100vh - 56px - 176px); /* keep it compact */
+  }
+}

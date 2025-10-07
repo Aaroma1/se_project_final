@@ -96,3 +96,52 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .saved {
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .saved__container {
+    padding: 0;
+  }
+
+  .saved__container-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .saved__title {
+    width: 288px;
+    font-size: 12px;
+    margin: 0;
+    padding-top: 12px;
+  }
+
+  .saved__heading {
+    width: 288px;
+    height: 68px !important;
+    font-size: 30px;
+    padding-top: 16px; /* 16px below saved title */
+    margin: 0;
+  }
+
+  .saved__text {
+    width: 288px;
+    height: 48px;
+    font-size: 18px;
+    padding-top: 50px;
+    padding-bottom: 32px;
+    margin: 0;
+  }
+
+  .saved__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-top: 24px;
+    padding-bottom: 12px !important;
+  }
+}

@@ -152,7 +152,6 @@ function NewsCard({
             onMouseLeave={() => setShowTooltip(false)}
             type="button"
           />
-
           {/* Tooltip */}
           {showTooltip && !loggedIn && (
             <span className="newscard__tooltip">Sign in to save articles</span>
