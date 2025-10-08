@@ -4,9 +4,8 @@ import "./SearchForm.css";
 function SearchForm({ onSearch, isLoading }) {
   const [keyword, setKeyword] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [touched, setTouched] = useState(false); // new state
+  const [touched, setTouched] = useState(false);
 
-  // Validate whenever keyword changes
   useEffect(() => {
     const len = keyword.trim().length;
     setIsValid(len >= 2 && len <= 50);
@@ -14,7 +13,7 @@ function SearchForm({ onSearch, isLoading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTouched(true); // mark that the form was submitted/touched
+    setTouched(true);
     if (isValid && onSearch) {
       onSearch(keyword.trim());
     }

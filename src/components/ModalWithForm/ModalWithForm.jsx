@@ -13,10 +13,16 @@ function ModalWithForm({
   onAltAction,
   isValid,
   titleAlignLeft,
+  modifier,
 }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <Form onSubmit={onSubmit} className="modal__form">
+      <Form
+        onSubmit={onSubmit}
+        className={`modal__form ${
+          modifier ? `modal__form_type_${modifier}` : ""
+        }`}
+      >
         <h2
           className="modal__title"
           style={titleAlignLeft ? { alignSelf: "flex-start" } : {}}

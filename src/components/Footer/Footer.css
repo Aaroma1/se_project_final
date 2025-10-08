@@ -65,78 +65,6 @@
   }
 }
 
-/* @media screen and (max-width: 320px) and (min-height: 568px) {
-  .about {
-    height: 752px;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-  }
-
-  .about__avatar {
-  
-    margin-top: 32px;
-    width: 272px;
-    height: 272px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .about__title {
-    width: 288px;
-    height: 40px;
-    font-size: 30px;
-    margin-top: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .about__description {
-    width: 288px;
-    min-height: 240px;
-    font-size: 18px;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-top: 16px;
-  }
-} */
-
-/* FOOTER mobile */
-/* @media screen and (max-width: 320px) {
-  .footer {
-    height: 176px !important;
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .footer__buttons {
-
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding-top: 16px;
-  }
-
-  .footer__button {
-    width: 288px;
-    height: 74px;
-    font-size: 18px;
-    text-align: left;
-    padding-left: 16px;
-  }
-
-  .footer__title {
-    width: 288px;
-    height: 22px;
-    font-size: 16px;
-    margin-bottom: 22px;
-} */
-
 @media screen and (max-width: 320px) {
   .footer {
     height: 176px !important;
@@ -145,8 +73,8 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Start stacking from the top */
-    position: relative; /* So we can absolutely position the title */
+    justify-content: flex-start;
+    position: relative;
   }
 
   .footer__buttons {

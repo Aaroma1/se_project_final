@@ -1,4 +1,3 @@
-// export default SignUpModal;
 import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Input from "../Input/input";
@@ -20,7 +19,6 @@ function SignUpModal({ isOpen, onClose, onSignUp, onSwitchToSignIn }) {
   }, [isOpen]);
 
   const checkEmailAvailable = (email) => {
-    // Replace with backend check later
     const valid = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|edu)$/;
     return valid.test(email);
   };
@@ -62,6 +60,7 @@ function SignUpModal({ isOpen, onClose, onSignUp, onSwitchToSignIn }) {
       altActionText="Sign in"
       onAltAction={onSwitchToSignIn}
       titleAlignLeft={true}
+      modifier="signup"
       isValid={
         formValues.email &&
         !emailError &&
@@ -101,7 +100,6 @@ function SignUpModal({ isOpen, onClose, onSignUp, onSwitchToSignIn }) {
         maxLength="30"
         required
       />
-      {/* Error text positioned above submit button */}
       {emailError && (
         <span className="form__availability-error">{emailError}</span>
       )}

@@ -75,15 +75,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* .saved__title,
-  .saved__heading,
-  .saved__text {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box;
-  } */
   .saved__container-inner {
     padding-left: 40px;
     padding-right: 40px;
@@ -124,7 +115,7 @@
     width: 288px;
     height: 68px !important;
     font-size: 30px;
-    padding-top: 16px; /* 16px below saved title */
+    padding-top: 16px;
     margin: 0;
   }
 

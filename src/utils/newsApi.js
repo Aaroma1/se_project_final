@@ -1,8 +1,6 @@
-// HARDCODED for local testing ONLY. Remove before production!
 const NEWS_API_KEY = "028f50518ffd43de972dcb22df379db6";
 const BASE_URL = "https://newsapi.org/v2/everything";
 
-// Helper: format YYYY-MM-DD
 const formatDate = (date) => date.toISOString().split("T")[0];
 
 const getArticles = async (keyword) => {

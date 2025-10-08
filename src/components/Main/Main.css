@@ -50,7 +50,7 @@ html {
 }
 
 .main__background {
-  background-image: url("/Images/main.png");
+  background-image: url("/public/Images/desktopBackground.jpg");
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center -80px;
@@ -66,8 +66,9 @@ html {
 
 @media screen and (max-width: 1439px) {
   .main__background {
-    background-size: cover; /* no white space */
-    background-position: center top; /* tweak if you need to line things up */
+    background-image: url("/public/Images/tabletBackground.jpg");
+    background-size: cover;
+    background-position: center top;
   }
 }
 
@@ -96,7 +97,7 @@ html {
   }
 
   .main__background {
-    background-image: url("/Images/MainTablet.jpg");
+    background-image: url("/public/Images/tabletBackground.jpg");
     background-size: 100% auto;
     background-position: center -66px;
   }
@@ -104,7 +105,8 @@ html {
 
 @media screen and (max-width: 767px) {
   .main__background {
-    background-size: cover; /* prevent shrinking gaps */
+    background-image: url("/public/Images/tabletBackground.jpg");
+    background-size: cover;
     background-position: center top;
   }
 }
@@ -118,31 +120,30 @@ html {
   }
 
   .main__background {
-    background-image: url("/Images/MainTablet.jpg");
-    background-size: cover; /* portrait crop; helps the seamless header+main background */
-    background-position: center top;
+    background-image: url("/public/Images/phoneBackground.jpg");
+    background-size: contain;
+    background-position: center -55px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
-    min-height: 100vh; /* still allow background below */
+    min-height: 100vh;
     z-index: 1;
     pointer-events: none;
   }
 
-  /* Title + subtitle sizing & spacing */
   .main__title {
     width: 285px;
     height: 80px;
     font-size: 36px;
     line-height: 40px;
-    padding-top: 30px; /* sits 30px below top of content area */
+    padding-top: 30px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 16px;
     z-index: 2;
     text-align: left;
-    margin: 0;
+    margin-top: 30px;
   }
 
   .main__subtitle {

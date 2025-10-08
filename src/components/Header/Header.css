@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 0 104px 0 104px;
   width: 100%;
   box-sizing: border-box;
@@ -119,6 +120,16 @@
   display: none;
 }
 
+.header__modal-close {
+  visibility: hidden;
+}
+
+.header__links,
+.header__title,
+.header__links-button {
+  flex: 0 0 auto;
+}
+
 @media screen and (max-width: 768px) {
   .header {
     height: 66px;
@@ -184,13 +195,9 @@
     min-height: 56px;
     max-height: 56px;
     align-items: center;
-    background-image: url("/Images/MainTablet.jpg");
+    background-image: url("/public/Images/phoneBackground.jpg");
     background-size: cover;
     background-position: center top;
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    right: 0; KEEP THIS CODE FOR SUBMISSION */
     z-index: 20;
   }
 
@@ -242,6 +249,7 @@
   .header.mobile-open {
     background-color: #1a1b22 !important;
     background-image: none !important;
+    position: fixed;
   }
 
   .header.mobile-open.header__saved {
@@ -303,22 +311,15 @@
     transition: color 0.3s ease, border-color 0.3s ease;
   }
 
-  /* when logged-in (no visual difference unless you want spacing tweaks) */
   .mobile-nav_logged-in .mobile-nav__button {
     border: none;
     justify-content: flex-start !important;
-    /* optional: slightly smaller or tighter spacing */
   }
 
   .mobile-nav__button.active {
     border: none;
     justify-content: flex-start !important;
   }
-
-  /* .mobile-nav__button.mobile-nav__button_action {
-    border: 1px solid #1a1b22;
-    justify-content: center !important;
-  } */
 
   .mobile-nav__button.mobile-nav__button_action {
     border: 1px solid #1a1b22;
@@ -331,10 +332,6 @@
     justify-content: center !important;
   }
 
-  /* .mobile-nav__button .mobile-nav_saved .mobile-nav__button {
-    color: #1a1b22;
-  } */
-  /* when on saved page: switch to dark mode */
   .mobile-nav_saved .mobile-nav__button {
     color: #1a1b22;
     border-color: #1a1b22;
@@ -361,5 +358,35 @@
     bottom: 0;
     background-color: rgba(26, 27, 34, 0.5);
     z-index: 10;
+  }
+
+  .header--modal-open {
+    box-shadow: none !important;
+    opacity: 1 !important;
+    background-image: url("/Images/MainTablet.jpg") !important;
+    background-color: transparent;
+    z-index: 1002;
+  }
+
+  .header--modal-open.header__saved {
+    background-color: #ffffff;
+    background-image: none;
+  }
+
+  .header--modal-open .header__burger {
+    display: none !important;
+  }
+
+  .header__modal-close {
+    visibility: visible !important;
+    display: block;
+    background: transparent;
+    border: none;
+    width: 24px;
+    height: 24px;
+    background-image: url("/Images/MobileCloseBtn.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
   }
 }

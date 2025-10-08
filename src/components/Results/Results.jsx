@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
 import NewsCard from "../NewsCard/NewsCard";
-import NoResults from "../NoResults/NoResults"; // import here
+import NoResults from "../NoResults/NoResults";
 import "./Results.css";
 
 function Results({
@@ -24,7 +24,6 @@ function Results({
 
   if (!hasSearched) return null;
 
-  // If there are no results, only render NoResults (not wrapped in .results)
   if (!loading && !error && displayedArticles.length === 0 && hasSearched) {
     return <NoResults />;
   }

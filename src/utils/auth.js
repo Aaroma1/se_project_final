@@ -1,5 +1,4 @@
 export const authorize = async (email, password) => {
-  // pretend successful login
   return new Promise((resolve) => {
     setTimeout(() => {
       const fakeToken = "fake-jwt-token";

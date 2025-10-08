@@ -1,4 +1,3 @@
-// export default SignInModal;
 import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import Input from "../Input/input";
@@ -11,7 +10,6 @@ function SignInModal({ isOpen, onClose, onSignIn, onSwitchToSignUp }) {
 
   const [emailError, setEmailError] = useState("");
 
-  // Reset form & errors whenever modal opens
   useEffect(() => {
     if (isOpen) {
       setFormValues({ email: "", password: "" });
@@ -57,6 +55,7 @@ function SignInModal({ isOpen, onClose, onSignIn, onSwitchToSignUp }) {
         validateEmail(formValues.email) && formValues.password.length > 0
       }
       titleAlignLeft={true}
+      modifier="signin"
     >
       <Input
         label="Email"
@@ -66,24 +65,7 @@ function SignInModal({ isOpen, onClose, onSignIn, onSwitchToSignUp }) {
         onChange={handleChange}
         placeholder="Enter email"
       />
-      {/* Error text for email */}
-      {emailError && (
-        <span
-          style={{
-            color: "#FF0000",
-            fontFamily: "Inter",
-            fontWeight: 400,
-            fontSize: "12px",
-            width: "173px",
-            height: "14px",
-            display: "block",
-            marginTop: "-8px",
-            marginBottom: "8px",
-          }}
-        >
-          {emailError}
-        </span>
-      )}
+      {emailError && <span className="form__error">{emailError}</span>}
       <Input
         label="Password"
         type="password"

@@ -22,7 +22,7 @@ function Modal({ isOpen, onClose, children }) {
           onClick={onClose}
           aria-label="Close modal"
         >
-          {/* × */}{" "}
+          {" "}
           <img
             className="modal__close-btn"
             src={ModalCloseButton}

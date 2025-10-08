@@ -4,11 +4,16 @@ import "./Header.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import logoutIcon from "../../../public/Images/logout.svg";
 
-function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
+function Header({
+  loggedIn = false,
+  onSignInClick,
+  onSignOutClick,
+  isModalOpen = false,
+  onModalClose = () => {},
+}) {
   const currentUser = useContext(CurrentUserContext);
   const location = useLocation();
   const onSavedPage = location.pathname === "/saved-articles";
-
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -26,9 +31,10 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
 
   return (
     <header
-      className={`header ${onSavedPage ? "header__saved" : ""} ${
-        mobileOpen ? "mobile-open" : ""
-      }`}
+      className={`header 
+        ${onSavedPage ? "header__saved" : ""} 
+        ${mobileOpen ? "mobile-open" : ""} 
+        ${isModalOpen ? "header--modal-open" : ""}`}
     >
       <NavLink
         className={`header__logo header__title ${
@@ -40,7 +46,6 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
         NewsExplorer
       </NavLink>
 
-      {/* desktop links (hidden on phone via CSS) */}
       <nav className="header__links">
         <NavLink
           to="/"
@@ -87,29 +92,30 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
           )}
         </button>
       </nav>
+      {!isModalOpen && (
+        <button
+          className={`header__burger ${
+            mobileOpen ? "header__burger_open" : ""
+          }`}
+          type="button"
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMobileOpen((s) => !s)}
+        />
+      )}
 
-      {/* burger button (visible only on phone via CSS) */}
-      <button
-        className={`header__burger ${mobileOpen ? "header__burger_open" : ""}`}
-        type="button"
-        aria-expanded={mobileOpen}
-        aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        onClick={() => setMobileOpen((s) => !s)}
-      />
-
-      {/* mobile dropdown (fixed 174px high) */}
-      {/* <div
+      {isModalOpen && (
+        <button
+          className="header__modal-close"
+          type="button"
+          aria-label="Close modal"
+          onClick={onModalClose}
+        />
+      )}
+      <div
         className={`mobile-nav ${mobileOpen ? "mobile-nav_open" : ""} ${
           onSavedPage ? "mobile-nav_saved" : ""
-        }`}
-        aria-hidden={!mobileOpen}
-      > */}
-      <div
-        className={`mobile-nav 
-    ${mobileOpen ? "mobile-nav_open" : ""} 
-    ${onSavedPage ? "mobile-nav_saved" : ""} 
-    ${loggedIn ? "mobile-nav_logged-in" : "mobile-nav_logged-out"}
-  `}
+        } ${loggedIn ? "mobile-nav_logged-in" : "mobile-nav_logged-out"}`}
         aria-hidden={!mobileOpen}
       >
         <div className="mobile-nav__inner">
@@ -120,7 +126,6 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
           >
             Home
           </NavLink>
-
           {!loggedIn ? (
             <button
               className="mobile-nav__button"
@@ -152,6 +157,7 @@ function Header({ loggedIn = false, onSignInClick, onSignOutClick }) {
           )}
         </div>
       </div>
+
       {mobileOpen && (
         <div
           className="mobile-overlay"

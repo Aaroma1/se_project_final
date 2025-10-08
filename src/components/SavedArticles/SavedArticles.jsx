@@ -1,4 +1,3 @@
-// src/components/SavedArticles/SavedArticles.jsx
 import { useMemo } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./SavedArticles.css";
@@ -6,7 +5,6 @@ import "./SavedArticles.css";
 function SavedArticles({ currentUser, savedArticles, onRemove, loggedIn }) {
   const savedCount = savedArticles.length;
 
-  // Generate keyword summary
   const keywordSummary = useMemo(() => {
     if (savedArticles.length === 0) return "";
 
@@ -52,8 +50,8 @@ function SavedArticles({ currentUser, savedArticles, onRemove, loggedIn }) {
             key={index}
             article={article}
             loggedIn={loggedIn}
-            isSaved={true} // always saved on this page
-            onSave={() => {}} // optional: no-op, since they’re already saved
+            isSaved={true}
+            onSave={() => {}}
             onRemove={onRemove}
             isSavedPage={true}
           />

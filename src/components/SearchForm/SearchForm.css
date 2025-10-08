@@ -90,26 +90,6 @@
 }
 
 @media screen and (width: 320px) {
-  /* .search-form {
-    
-    margin-top: 122px;
-    width: 288px;
-    height: 128px;
-    padding-left: 16px;
-    padding-right: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    z-index: 2;
-  }
-
-  .search-form__input {
-    height: 56px;
-  }
-  .search-form__button {
-    height: 56px;
-  } */
-
   .search__form {
     width: 288px;
     height: 128px;

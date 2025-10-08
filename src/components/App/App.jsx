@@ -10,7 +10,7 @@ import SignInModal from "../SignInModal/SignInModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
 import CompletedModal from "../CompletedModal/CompletedModal";
 import Results from "../Results/Results";
-import SavedArticles from "../SavedArticles/SavedArticles"; // <-- NEW
+import SavedArticles from "../SavedArticles/SavedArticles";
 import getArticles from "../../utils/newsApi";
 
 import "./App.css";
@@ -18,29 +18,24 @@ import "./App.css";
 function App() {
   const navigate = useNavigate();
 
-  // Auth state
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-  // Modal state
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
 
-  // News search state
   const [articles, setArticles] = useState([]);
   const [visibleCount, setVisibleCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
 
-  // Saved articles state
   const [savedArticles, setSavedArticles] = useState([]);
-  // Track last search keyword
+
   const [lastKeyword, setLastKeyword] = useState("");
 
-  // ---------- Modal logic ----------
   const openSignInModal = () => {
     setIsSignInOpen(true);
     setIsSignUpOpen(false);
@@ -74,10 +69,9 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
-    navigate("/"); // back to home after logout
+    navigate("/");
   };
 
-  // ---------- News search logic ----------
   const handleSearch = async (keyword) => {
     setLastKeyword(keyword);
     if (!keyword.trim()) {
@@ -113,13 +107,12 @@ function App() {
     setVisibleCount((prev) => Math.min(prev + 3, articles.length));
   };
 
-  // ---------- Saved articles logic ----------
   const handleSaveArticle = (article) => {
     setSavedArticles((prev) => {
       if (prev.some((a) => a.url === article.url)) {
         return prev;
       }
-      // Attach the last search keyword
+
       return [{ ...article, keyword: lastKeyword }, ...prev];
     });
   };
@@ -128,7 +121,6 @@ function App() {
     setSavedArticles((prev) => prev.filter((a) => a.url !== article.url));
   };
 
-  // ---------- Check token on mount ----------
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("jwt");
     if (tokenFromStorage) {
@@ -149,26 +141,14 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
-        {/* TEMP test button, you can delete later */}
-        <button
-          onClick={() => {
-            setLoggedIn((prev) => !prev);
-            setIsLoggedIn((prev) => !prev);
-          }}
-        >
-          {loggedIn ? "Log out (fake)" : "Log in (fake)"}
-        </button>
-
-        {/* Header always visible */}
         <Header
           onSignInClick={openSignInModal}
           loggedIn={isLoggedIn}
           onSignOutClick={handleLogout}
+          isModalOpen={isSignInOpen || isSignUpOpen || isCompletedModalOpen}
+          onModalClose={closeModals}
         />
-
-        {/* Routes handle page switching */}
         <Routes>
-          {/* Home */}
           <Route
             path="/"
             element={
@@ -193,7 +173,6 @@ function App() {
             }
           />
 
-          {/* Saved Articles (only accessible when logged in) */}
           <Route
             path="/saved-articles"
             element={
@@ -213,7 +192,6 @@ function App() {
 
         <Footer />
 
-        {/* Modals */}
         <SignInModal
           isOpen={isSignInOpen}
           onClose={closeModals}
