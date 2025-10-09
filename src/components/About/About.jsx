@@ -1,4 +1,5 @@
 import "./About.css";
+import avatar from "../../assets/Aaron-Main-Headshot.jpg";
 
 function About() {
   return (
@@ -7,7 +8,7 @@ function About() {
         <img
           className="about__avatar"
           // src="/Aaron-Main-Headshot.jpg"
-          src={`${import.meta.env.BASE_URL}Aaron-Main-Headshot.jpg`}
+          src={avatar}
           alt="Author avatar"
         />
       </div>
