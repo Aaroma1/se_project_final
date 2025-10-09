@@ -4,7 +4,7 @@ function NoResults() {
   return (
     <div className="no-results">
       <img
-        src="/Images/NotFound.svg"
+        src={`${import.meta.env.BASE_URL}Images/NotFound.svg`}
         alt="Not found"
         className="no-results__missing-image"
       />
