@@ -6,7 +6,8 @@ function About() {
       <div className="about__avatar-container">
         <img
           className="about__avatar"
-          src="/Aaron-Main-Headshot.jpg"
+          // src="/Aaron-Main-Headshot.jpg"
+          src={`${import.meta.env.BASE_URL}Aaron-Main-Headshot.jpg`}
           alt="Author avatar"
         />
       </div>
