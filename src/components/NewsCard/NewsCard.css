@@ -284,6 +284,11 @@
     top: 8px;
     left: 8px;
   }
+  .newscard__tooltip {
+    top: 8px;
+    left: 20px;
+    width: 150px;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -359,5 +364,11 @@
     min-width: 60px;
     height: 40px;
     padding: 0 12px;
+  }
+
+  .newscard__tooltip {
+    top: 8px;
+    left: 55px;
+    width: 182px;
   }
 }
