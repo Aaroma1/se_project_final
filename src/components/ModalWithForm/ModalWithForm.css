@@ -92,6 +92,10 @@
   cursor: pointer;
 }
 
+.modal__submit_active:hover {
+  background: #2a65cc;
+}
+
 .modal__alt-action {
   display: flex;
   align-items: center;
@@ -120,6 +124,11 @@
   line-height: 100%;
   cursor: pointer;
   padding: 0 0 0 4px;
+}
+
+.modal__alt-button:hover {
+  color: #2a65cc;
+  border-bottom: 1px solid #2a65cc;
 }
 
 @media screen and (max-width: 320px) {

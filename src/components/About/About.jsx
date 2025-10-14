@@ -5,12 +5,7 @@ function About() {
   return (
     <section className="about">
       <div className="about__avatar-container">
-        <img
-          className="about__avatar"
-          // src="/Aaron-Main-Headshot.jpg"
-          src={avatar}
-          alt="Author avatar"
-        />
+        <img className="about__avatar" src={avatar} alt="Author avatar" />
       </div>
       <div className="about__content">
         <h2 className="about__title">About the author</h2>
@@ -22,7 +17,7 @@ function About() {
           <br />
           <br />
           With the help of Tripleten Aaron learned how to think like an engineer
-          with a strong focus on the user's needs. Tripleten gave Aaron the
+          with a strong focus on the user&apos;s needs. Tripleten gave Aaron the
           tools needed for success as a web developer and UI/UX design.
         </p>
       </div>

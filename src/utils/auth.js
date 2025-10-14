@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 export const authorize = async (email, password) => {
   return new Promise((resolve) => {
     setTimeout(() => {

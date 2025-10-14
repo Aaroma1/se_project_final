@@ -1,4 +1,4 @@
-.search__form {
+.search {
   position: relative;
   margin: 0;
   width: 608px;
@@ -69,7 +69,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .search__form {
+  .search {
     width: 448px;
     height: 56px;
     margin: 0;
@@ -90,7 +90,7 @@
 }
 
 @media screen and (width: 320px) {
-  .search__form {
+  .search {
     width: 288px;
     height: 128px;
     display: flex;

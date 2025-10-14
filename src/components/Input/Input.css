@@ -5,26 +5,7 @@
   line-height: 28.13px;
   margin: 34px 36px 22px;
 }
-.form__button {
-  background-color: #2f71e5;
-  color: #ffffff;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  border-radius: 100px;
-  width: 360px;
-  height: 64px;
-  margin: 0 auto;
-  margin-top: 35px;
-}
-.form__button:hover {
-  cursor: pointer;
-}
-.form__button_disabled {
-  background-color: #e6e8eb;
-  color: #b6bcbf;
-}
+
 .form__text {
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -35,19 +16,7 @@
   width: 226px;
   height: 20px;
 }
-.form__link {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #2f71e5;
-  background: none;
-  border: 0;
-  padding: 0;
-}
-.form__link {
-  cursor: pointer;
-}
+
 .form__input-title {
   color: #2f71e5;
   font-family: "Inter", sans-serif;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./SearchForm.css";
 
 function SearchForm({ onSearch, isLoading }) {
@@ -20,7 +20,7 @@ function SearchForm({ onSearch, isLoading }) {
   };
 
   return (
-    <form className="search__form" onSubmit={handleSubmit} noValidate>
+    <form className="search" onSubmit={handleSubmit} noValidate>
       <label htmlFor="search-input" className="search__label" hidden>
         Search news
       </label>

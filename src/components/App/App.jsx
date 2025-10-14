@@ -12,13 +12,13 @@ import CompletedModal from "../CompletedModal/CompletedModal";
 import Results from "../Results/Results";
 import SavedArticles from "../SavedArticles/SavedArticles";
 import getArticles from "../../utils/newsApi";
+import * as auth from "../../utils/auth";
 
 import "./App.css";
 
 function App() {
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
@@ -33,7 +33,6 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
 
   const [savedArticles, setSavedArticles] = useState([]);
-
   const [lastKeyword, setLastKeyword] = useState("");
 
   const openSignInModal = () => {
@@ -47,15 +46,16 @@ function App() {
   const closeModals = () => {
     setIsSignInOpen(false);
     setIsSignUpOpen(false);
+    setIsCompletedModalOpen(false);
   };
 
-  const handleSignIn = ({ email, password }) => {
+  const handleSignIn = ({ email }) => {
     setIsLoggedIn(true);
     setCurrentUser({ email, name: "Demo User" });
     closeModals();
   };
 
-  const handleSignUp = ({ email, password, name }) => {
+  const handleSignUp = ({ email, name }) => {
     setIsSignUpOpen(false);
     setIsCompletedModalOpen(true);
     setCurrentUser({ email, name });
@@ -80,11 +80,13 @@ function App() {
       setHasSearched(false);
       return;
     }
+
     setLoading(true);
     setError("");
     setArticles([]);
     setVisibleCount(0);
     setHasSearched(true);
+
     try {
       const results = await getArticles(keyword);
       if (!results || results.length === 0) {
@@ -112,7 +114,6 @@ function App() {
       if (prev.some((a) => a.url === article.url)) {
         return prev;
       }
-
       return [{ ...article, keyword: lastKeyword }, ...prev];
     });
   };
@@ -128,11 +129,9 @@ function App() {
         .checkToken(tokenFromStorage)
         .then((res) => {
           setCurrentUser(res);
-          setLoggedIn(true);
           setIsLoggedIn(true);
         })
         .catch(() => {
-          setLoggedIn(false);
           setIsLoggedIn(false);
         });
     }
@@ -141,19 +140,23 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
-        <Header
-          onSignInClick={openSignInModal}
-          loggedIn={isLoggedIn}
-          onSignOutClick={handleLogout}
-          isModalOpen={isSignInOpen || isSignUpOpen || isCompletedModalOpen}
-          onModalClose={closeModals}
-        />
+        <header>
+          <Header
+            onSignInClick={openSignInModal}
+            loggedIn={isLoggedIn}
+            onSignOutClick={handleLogout}
+            isModalOpen={isSignInOpen || isSignUpOpen || isCompletedModalOpen}
+            onModalClose={closeModals}
+          />
+        </header>
+
         <Routes>
           <Route
             path="/"
             element={
-              <>
+              <main>
                 <Main onSearch={handleSearch} isLoading={loading} />
+
                 {hasSearched && (
                   <Results
                     loading={loading}
@@ -168,8 +171,9 @@ function App() {
                     onRemove={handleRemoveArticle}
                   />
                 )}
+
                 <About />
-              </>
+              </main>
             }
           />
 
@@ -190,8 +194,11 @@ function App() {
           />
         </Routes>
 
-        <Footer />
+        <footer>
+          <Footer />
+        </footer>
 
+        {/* Modals */}
         <SignInModal
           isOpen={isSignInOpen}
           onClose={closeModals}

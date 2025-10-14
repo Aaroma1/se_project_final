@@ -34,6 +34,7 @@
   border: none;
   font-size: 24px;
   color: #b6bcbf;
+  opacity: 1;
   cursor: pointer;
   z-index: 1;
 }
@@ -42,6 +43,10 @@
   width: 32px;
   height: 32px;
   display: block;
+}
+
+.modal__close:hover {
+  opacity: 70%;
 }
 
 @media screen and (max-width: 320px) {
