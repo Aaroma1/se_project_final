@@ -12,7 +12,7 @@ News Explorer is a React-based web application that enables users to discover ne
 ## How to Use
 
 - Enter a keyword in the search field to view related news articles.
-- Browse through the search results and click on any article for more details.
+- Browse through the search results and click on any article for more.
 
 ## Technologies
 
@@ -20,3 +20,11 @@ News Explorer is a React-based web application that enables users to discover ne
 - JavaScript (ES6+)
 - CSS/SCSS
 - News API
+
+---
+
+## Deployment
+
+This site was deployed using GitHub Pages
+
+Live site: https://aaroma1.github.io/se_project_final/

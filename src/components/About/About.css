@@ -1,0 +1,141 @@
+.about {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 56px;
+  background: #fff;
+  max-width: 1440px;
+  width: 100%;
+  min-height: 624px;
+  max-height: 624px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.about__avatar-container {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 464px;
+  height: 464px;
+  max-width: 464px;
+  max-height: 464px;
+  padding-right: 48px;
+}
+
+.about__avatar {
+  width: 100%;
+  height: 100%;
+  max-width: 464px;
+  max-height: 464px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #949494;
+  aspect-ratio: 1/1;
+}
+
+.about__content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+}
+
+.about__title {
+  font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  margin: 0 0 24px 0;
+}
+
+.about__description {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    height: auto;
+    min-height: 354px;
+    max-height: none;
+    column-gap: 0;
+    padding-top: 40px;
+    padding-bottom: 61px;
+    padding-left: 40px;
+    padding-right: 40px;
+    flex-direction: column;
+  }
+  .about__avatar-container {
+    width: 232px;
+    max-width: 232px;
+    max-height: 232px;
+  }
+
+  .about__title {
+    height: 34px;
+    font-size: 30px;
+    line-height: 34px;
+    margin: 0;
+    padding-bottom: 16px;
+  }
+
+  .about__description {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+    height: 752px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 0;
+    box-sizing: border-box;
+  }
+
+  .about__avatar-container {
+    margin-top: 0;
+    padding-right: 0;
+    display: flex;
+    justify-content: center;
+    height: 272px !important;
+    max-height: 272px !important;
+    width: 272px !important;
+    max-width: 272px !important;
+  }
+
+  .about__avatar {
+    margin: 0 !important;
+    width: 272px !important;
+    height: 272px !important;
+    display: block;
+  }
+
+  .about__title {
+    width: 288px;
+    height: 40px;
+    font-size: 30px;
+    margin: 0 !important;
+    padding: 24px 16px 0;
+  }
+
+  .about__description {
+    width: 288px;
+    min-height: 240px;
+    font-size: 18px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 0 !important;
+  }
+}

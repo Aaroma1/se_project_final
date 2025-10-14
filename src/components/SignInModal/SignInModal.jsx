@@ -1,0 +1,84 @@
+import { useState, useEffect } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import Input from "../Input/input";
+
+function SignInModal({ isOpen, onClose, onSignIn, onSwitchToSignUp }) {
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [emailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormValues({ email: "", password: "" });
+      setEmailError("");
+    }
+  }, [isOpen]);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[A-Za-z0-9._%+-]{2,30}@[A-Za-z0-9.-]+\.(com|edu)$/;
+    return emailRegex.test(email);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "email") {
+      if (!validateEmail(value)) {
+        setEmailError("Invalid email address");
+      } else {
+        setEmailError("");
+      }
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateEmail(formValues.email) && formValues.password) {
+      onSignIn(formValues);
+    }
+  };
+
+  return (
+    <ModalWithForm
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Sign in"
+      submitText="Sign in"
+      onSubmit={handleSubmit}
+      altActionText="Sign up"
+      onAltAction={onSwitchToSignUp}
+      isValid={
+        validateEmail(formValues.email) && formValues.password.length > 0
+      }
+      titleAlignLeft={true}
+      modifier="signin"
+    >
+      <Input
+        label="Email"
+        type="email"
+        name="email"
+        value={formValues.email}
+        onChange={handleChange}
+        placeholder="Enter email"
+      />
+      {emailError && <span className="form__error">{emailError}</span>}
+      <Input
+        label="Password"
+        type="password"
+        name="password"
+        value={formValues.password}
+        onChange={handleChange}
+        placeholder="Enter password"
+        minLength="2"
+        maxLength="30"
+        required
+      />
+    </ModalWithForm>
+  );
+}
+
+export default SignInModal;

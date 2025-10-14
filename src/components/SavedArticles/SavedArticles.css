@@ -1,0 +1,132 @@
+.saved {
+  background-color: #f5f6f7;
+  padding-bottom: 40px;
+  min-height: 60vh;
+  max-width: 1440px;
+  margin: 0;
+}
+
+.saved__container {
+  background-color: #fff;
+  padding-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.saved__container-inner {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 16px;
+}
+
+.saved__title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(26, 27, 34, 0.5);
+  height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.saved__heading {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  height: 92px;
+  padding-top: 28px;
+  margin: 0;
+}
+
+.saved__text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  height: 24px;
+  padding-top: 30px;
+  padding-bottom: 56px;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+}
+
+.saved__keywords {
+  font-weight: 700;
+}
+
+.saved__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 400px));
+  gap: 16px;
+  justify-items: center;
+  align-items: stretch;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .saved__container-inner {
+    padding: 0 16px;
+  }
+
+  .saved__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .saved {
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .saved__container {
+    padding: 0;
+  }
+
+  .saved__container-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .saved__title {
+    width: 288px;
+    font-size: 12px;
+    margin: 0;
+    padding-top: 12px;
+  }
+
+  .saved__heading {
+    width: 288px;
+    height: 68px !important;
+    font-size: 30px;
+    padding-top: 16px;
+    margin: 0;
+    text-align: left;
+  }
+
+  .saved__text {
+    width: 288px;
+    height: 48px;
+    font-size: 18px;
+    padding-top: 50px;
+    padding-bottom: 32px;
+    margin-top: 30px;
+  }
+
+  .saved__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-top: 24px;
+    padding-bottom: 12px !important;
+  }
+}
