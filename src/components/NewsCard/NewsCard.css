@@ -51,8 +51,6 @@
   line-height: 30px;
   color: #1a1b22;
   margin: 0 0 16px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   max-height: 60px;
   overflow: hidden;
   text-overflow: ellipsis;

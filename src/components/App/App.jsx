@@ -198,7 +198,6 @@ function App() {
           <Footer />
         </footer>
 
-        {/* Modals */}
         <SignInModal
           isOpen={isSignInOpen}
           onClose={closeModals}
